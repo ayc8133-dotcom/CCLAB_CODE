@@ -1,0 +1,97 @@
+<!-- 
+Template for IMA's Creative Coding Lab 
+
+Project A: Generative Creatures
+CCLaboratories Biodiversity Atlas 
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>[ NAME OF YOUR CREATURE ]</title>
+
+    <!-- allow special characters, including Arabic, Chinese, Korean, Japanese, etc. -->
+    <meta charset="UTF-8">
+    <!-- link the style sheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- import p5.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js"></script>
+    <script>
+        // prevent scrolling when spacebar and arrow keys are pressed.
+        window.addEventListener("keydown", function (e) { if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) { e.preventDefault(); } }, false);
+    </script>
+</head>
+
+<body>
+    <!-- title -->
+    <div id="title-wrapper">
+        <h1 class="headline black">[ Space Sun Eater ]</h1>
+    </div>
+
+    <!-- main content -->
+    <div id="main-wrapper">
+        <main>
+            <!-- This is where your p5 sketch will be appended and appear! -->
+        </main>
+        <div class="two-columns">
+            <div class="left">
+                <h3 class="red">Scientific Name:</h3>
+                <p>Solarphage</p>
+
+                <h3 class="red">Discovered by / at:</h3>
+                <p>Aric Chua, NYU Shanghai</p>
+
+                <h3 class="green">Family:</h3>
+                <p>Helion</p>
+            </div>
+            <div class="right">
+                <h3 class="green">Habitat:</h3>
+                <p>Nebula void</p>
+
+                <h3 class="green">Appearance:</h3>
+                <p>This text is part of the story telling of your project. You created this creature then you can give
+                    all the information about it.</p>
+
+                <h3 class="green">Key Characteristics:</h3>
+                <ul>
+                    <li>Flies in the dark.</li>
+                    <li>Eats metal.</li>
+                    <li>(keep them short!)</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        </div>
+        <div class="one-column">
+            <p>
+                <span class="yellow">What we know so far about [ NAME OF YOUR CREATURE ]?</span>
+                The giraffe is a large African hoofed mammal belonging to the genus Giraffa. It is the tallest living
+                terrestrial animal and the largest ruminant on Earth. Traditionally, giraffes have been thought of as
+                one species, Giraffa camelopardalis, with nine subspecies. Most recently, researchers proposed dividing
+                them into up to eight extant species due to new research into their mitochondrial and nuclear DNA, as
+                well as morphological measurements. Seven other extinct species of Giraffa are known from the fossil
+                record. (This is from Wikipedia, write the story, history, facts, tales, myths, anecdotes about your
+                creature.)
+                <br>
+                <span class="yellow">Guidelines for human interaction with this creature</span> This text can double as
+                fictional part of your story, but could also include instructional aspects on how to interact with your
+                sketch above.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer" class="black">
+        <p>A CCLab project made by [Aric Chua] in [Fall Semester]</p>
+    </div>
+
+    <!-- Home: Link back to the ATLAS page-->
+    <div id="home">
+        <a href="https://cclab.work/atlas">Back to the ATLAS</a>
+    </div>
+
+    <!-- Include your sketch.js file here -->
+    <script src="sketch.js" type="text/javascript"> </script>
+</body>
+
+</html>
