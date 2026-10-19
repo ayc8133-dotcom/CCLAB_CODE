@@ -7,8 +7,9 @@ CCLaboratories Biodiversity Atlas
 
 let creatures = [];
 let lightSize = 30;
+let lightVisible = true;
 let splitSize = 100;
-let maxCreatures = 20
+let maxCreatures = 20;
 
 let params = {
   numberOfCurves: 25,
@@ -27,32 +28,29 @@ function setup() {
   colorMode(HSB, 360, 100, 100, 100);
 
   // starting creature
-  creatures.push(createCreature(width/2, height/2, 80, random(360)));
+  creatures.push(createCreature(width/2, height/2, 60, random(360)));
 }
 
 function draw() {
-  background(0, 10);
+  background(0, 20);
 
-  if(random()<0.3) {
+  // star background
+  if(random()<0.5) {
     
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 20; i++) {
 
     let x = random(width);
     let y = random(height);
-
-    // Random brightness
     let brightness = random(100, 255);
+    let size = random(1, 3);
 
     fill(255, brightness);
     noStroke();
-
-    // Random star size
-    let size = random(1, 4);
-
     circle(x, y, size);
     }
   }
 
+  // creature state
   for (let i = creatures.length - 1; i >= 0; i--) {
     let c = creatures[i];
     
@@ -60,8 +58,8 @@ function draw() {
     mouseX >= 0 && mouseX <= width &&
     mouseY >= 0 && mouseY <= height;
 
-  // follows mouse
-  if (mouseInside) {
+  // follows light
+  if (mouseInside && lightVisible) {
     c.x += (mouseX - c.x) * c.speed;
     c.y += (mouseY - c.y) * c.speed;
   } else {
@@ -77,18 +75,25 @@ function draw() {
     c.y += driftY * 2;
   }
 
+  // Keep creatures inside canvas 
+  let r = c.size * 0.6; 
+    
+  c.x = constrain(c.x, r, width - r); 
+  c.y = constrain(c.y, r, height - r);
+    
   drawCreature(c);
 
   // absorbs light
   let d = dist(c.x, c.y, mouseX, mouseY);
 
   if (
-    mouseInside &&
+    mouseInside && lightVisible && 
     d < c.size * 0.3 + lightSize/2 &&
     !c.absorbed
   ) {
-      c.size += 10;
+      c.size += 20;
       c.absorbed = true;
+      lightVisible = false;
     }
 
   if (d > c.size + lightSize) {
@@ -102,12 +107,14 @@ function draw() {
   }
   
   // light
+  if (lightVisible) {
   noStroke();
   fill(30, 30, 100, 25);
   circle(mouseX, mouseY, 50);
-  
+
   fill(30, 10, 100);
   circle(mouseX, mouseY, lightSize);
+  }
 }
 
 // creature properties
@@ -205,11 +212,16 @@ function splitCreature(index) {
   creatures.push(child1, child2);
 }
 
+// light reappears
+function mousePressed() {
+  lightVisible = true;
+}
+
 //reset
 function keyPressed() {
   if (key === ' ') {
     creatures = [];
-    creatures.push(createCreature(width / 2, height / 2, 80, random(360)));
+    creatures.push(createCreature(width / 2, height / 2, 60, random(360)));
   }
-}
+}  
 
